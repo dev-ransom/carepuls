@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-    <img src="https://github.com/dev-ransom/carepuls/assets/images/banner.jpg" alt="Project Banner">
+    <img src="https://github.com/dev-ransom/carepuls/blob/master/assets/images/banner.jpg" alt="Project Banner">
   <br />
 
   <div>
