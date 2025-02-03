@@ -17,27 +17,38 @@ import { parseStringify } from "../utils";
 // CREATE APPWRITE USER
 export const createUser = async (user: CreateUserParams) => {
 	try {
-		// Create new user -> https://appwrite.io/docs/references/1.5.x/server-nodejs/users#create
-		const newuser = await users.create(
+		// Attempt to create a new user
+		const newUser = await users.create(
 			ID.unique(),
 			user.email,
 			user.phone,
 			undefined,
 			user.name
 		);
-		return parseStringify(newuser);
+		return parseStringify(newUser);
 	} catch (error: unknown) {
-		// Type guard to check if error has a 'code' property
 		if (error && typeof error === "object" && "code" in error) {
-			const errorWithCode = error as { code: number }; // Narrow down the type
+			const errorWithCode = error as { code: number; message: string };
+			
+			// Handle email conflict (code 409)
 			if (errorWithCode.code === 409) {
-				const existingUser = await users.list([
+				console.warn(`Email conflict: ${errorWithCode.message}`);
+				
+				// Retrieve existing user by email
+				const existingUserResponse = await users.list([
 					Query.equal("email", [user.email]),
 				]);
-				return existingUser.users[0];
+				
+				const existingUser = existingUserResponse.users[0];
+				
+				// Return existing user details
+				return existingUser;
 			}
 		}
+		
+		// Log other errors
 		console.error("An error occurred while creating a new user:", error);
+		throw error; // Optionally rethrow for further handling
 	}
 };
 

@@ -18,7 +18,7 @@ const RequestSuccess = async ({
 	);
 
 	return (
-		<div className=" flex h-screen max-h-screen px-[5%]">
+		<div className="flex h-screen max-h-screen px-[5%]">
 			<div className="success-img">
 				<Link href="/">
 					<Image
@@ -45,7 +45,7 @@ const RequestSuccess = async ({
 				</section>
 
 				<section className="request-details">
-					<p>Requested appointment details: </p>
+					<p className="text-dark-700">Requested appointment details: </p>
 					<div className="flex items-center gap-3">
 						{doctor?.image && (
 							<Image
@@ -56,7 +56,7 @@ const RequestSuccess = async ({
 								className="size-6"
 							/>
 						)}
-						<p className="whitespace-nowrap">Dr. {doctor?.name}</p>
+						<p className="whitespace-nowrap text-dark-700">Dr. {doctor?.name}</p>
 					</div>
 					<div className="flex gap-2">
 						<Image
@@ -65,7 +65,7 @@ const RequestSuccess = async ({
 							width={24}
 							alt="calendar"
 						/>
-						<p> {formatDateTime(appointment.schedule).dateTime}</p>
+						<p className="text-dark-700"> {formatDateTime(appointment.schedule).dateTime}</p>
 					</div>
 				</section>
 

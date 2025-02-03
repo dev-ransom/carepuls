@@ -170,7 +170,7 @@
   }
 
   .text-14-regular {
-    @apply text-[14px] leading-[18px] font-normal;
+    @apply text-[14px] leading-[18px] font-normal text-white;
   }
 
   .text-12-regular {
